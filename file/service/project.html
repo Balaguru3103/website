@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Balaguru</title>
+    <link rel="stylesheet" href="/marvel.css">
+    <script src="/marvel.js"> </script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+   
+</head>
+<style>
+  @media screen and (max-width:450px) {
+   *{
+      font-size: 7px;
+   }
+  }
+</style>
+<body class="bode-come">
+    <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-warning">
+        <div class="container-fluid">
+          
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link " aria-current="page" href="../marvel.html">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="project.html">Projects</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link " href="calc.html">calc</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="marvel-profile.html">Resume</a>
+              </li>
+         
+            </ul>
+          </div>
+        </div>
+      </nav>
+   
+  
+
+
+ <!-- create card -->
+
+<div class="d-flex justify-content-around mt-5  " >
+<button onclick="ass()" class="btn btn-primary" style="margin-top: 50px; " >re-ass..</button>
+<button onclick="createCard()" class="btn btn-primary" style="margin-top: 50px; " >createCard</button></div> 
+
+
+
+<div class="d-flex justify-content-around ">
+<div class="card one " id="one" style="width: 350px;  margin: 30px 0 0 0;  ">
+        <img src="/thanos.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Thanos</h5>
+          <p class="card-text">A native of the planet Titan, Thanos saw the danger his people were in from overpopulation and suggested a severe solution—the elimination of half the population, at random and without prejudice, in order to make life better for the planet as a whole.</p>
+          <button class="btn btn-primary">select</button>
+        </div>
+      </div>
+      <div class="card card-two " id="two" style="width: 350px; margin: 30px 0 0 0;  ">
+        <img src="/capp.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Captain America</h5>
+          <p class="card-text">Captain America is a superhero created by Joe Simon and Jack Kirby who appears in American comic books published by Marvel Comics. The character first appeared in Captain America Comics #1, published on December 20, 1940, by Timely Comics, a corporate predecessor to Marvel.</p>
+          <a href="#" class="btn btn-primary">Select</a>
+        </div>
+      </div>
+      <div class="card card-three " id="three" style="width: 350px; margin: 30px 0 0 0;  ">
+        <img src="/iron.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Iron Man</h5>
+          <p class="card-text">What is Iron Man's personality? Tony Stark, is an outgoing genius billionaire, playboy, and philanthropist. He has a sharp wit and carefree personality mixed with a noble hero's willingness to do anything to help people. Despite his confidence and bravado, Tony often feels lonely.</p>
+          <a href="#" class="btn btn-primary">Select</a>
+        </div>
+      </div>
+    </div>
+
+
+
+    
+    <div id="card-container" class="container    d-flex  mt-5 w-25 " > </div>
+      <div class="d-flex justify-content-around">
+    <div class="speech">
+       <textarea name=""  id="text"></textarea>
+       
+    </div>
+    <div >
+    
+  </div>
+  <div class="d-flex justify-content-around">
+       <div class="col"> 
+        <button id="start-btn" onclick="record()">Start Recording</button>
+    <button class="btn" id="clk" onclick="change()"  >speak</button>
+    <!-- <button id="butt" class="btn" onclick="youtube()">youtube</button> -->
+    <button class="btn" onclick="stop()"  >stop</button>
+ 
+</div>
+<div id="holder"  style="width: 100px;"></div>
+</div>
+
+
+<!-- <p id="result"></p> -->
+
+</div>
+
+
+
+
+
+   
+          
+</body>
+</html>
+<script>
+
+
+
+</script>
+
+
+
+<script>
+  // Check if the browser supports the Web Speech API
+  if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+      const recognition = new SpeechRecognition();
+
+      recognition.lang = 'en-US'; // Set the language
+      recognition.interimResults = false; // true for continuous recognition
+
+      const startBtn = document.getElementById('start-btn');
+      const resultPara = document.getElementById('text');
+
+      // Start recording when the button is clicked
+      startBtn.addEventListener('click', () => {
+          recognition.start();
+      });
+
+      // Handle the result event
+      recognition.addEventListener('result', (e) => {
+          const transcript = e.results[0][0].transcript;
+          resultPara.textContent = `${transcript}`;
+      });
+
+      // Handle the end event
+      recognition.addEventListener('end', () => {
+          recognition.stop();
+      });
+
+      // Handle errors
+      recognition.addEventListener('error', (e) => {
+          console.error('Speech recognition error detected: ' + e.error);
+      });
+
+  } else {
+      console.log('Speech Recognition API not supported in this browser.');
+  }
+</script>
+
+
+
+<script>
+
+
+
+
+  function change(){
+   let text = document.getElementById('text').value;
+   
+   console.log(text);
+   
+    let voice = new SpeechSynthesisUtterance (text);
+    
+   
+    speechSynthesis.speak(voice);
+   
+    let yout = document.getElementById('butt');
+
+
+yout.addEventListener('', function() {
+
+window.open("https://www.google.com/search?q="+text);
+});
+
+console.log(time);
+    
+
+
+
+
+console.log('time');
+
+  }
+  function stop(){
+  
+   speechSynthesis.cancel();
+  }
+
+
+
+
+</script>
+
+<script>
+
+
+
+
+
+
+            // Create the card div
+            function createCard() {
+
+              const imageUrl = prompt("Please enter the URL of the image:");
+
+            // Create the card div
+            const card = document.createElement("div");
+            card.classList.add("card", "mb-3");
+          
+
+            // Create the card image
+            const cardImage = document.createElement("img");
+            cardImage.classList.add("card-img-top");
+            cardImage.src = imageUrl ? imageUrl :
+            cardImage.alt =prompt( "Card image");
+
+            // Create the card body
+            const cardBody = document.createElement("div");
+            cardBody.classList.add("card-body");
+
+            // Create the card title
+            const cardTitle = document.createElement("h5");
+            cardTitle.classList.add("card-title");
+            cardTitle.textContent = prompt("Card Title");
+
+            // Create the card text
+            const cardText = document.createElement("p");
+            cardText.classList.add("card-text");
+            cardText.textContent = prompt("text");
+
+            // Append title and text to card body
+            cardBody.appendChild(cardTitle);
+            cardBody.appendChild(cardText);
+
+            // Append the image and card body to the card
+            card.appendChild(cardImage);
+            card.appendChild(cardBody);
+
+            // Append the card to the card container in the DOM
+            const cardContainer = document.getElementById("card-container");
+            cardContainer.appendChild(card);
+        }
+
+     
+
+let a = document.getElementById('one');
+let b = document.getElementById('two');
+let c = document.getElementById('three');
+
+
+
+function ass(){
+  let video =Math.round(Math.random()%2);
+  if(video==1){
+    a.style.position='relative';
+    a.style.left='450px';
+   b.style.position='relative';
+   b.style.left='450px';
+   c.style.position='relative';
+   c.style.right='900px';  
+  } 
+else{
+  a.style.position='relative';
+    a.style.left='900px';
+   b.style.position='relative';
+   b.style.left='-450px';
+   c.style.position='relative';
+   c.style.right='450px'; 
+}
+}
+
+</script>
+
